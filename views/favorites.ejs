@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include head content -->
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Your Favorites</h2>
+        <% favorites.forEach(book => { %>
+            <div>
+                <h3><%= book.title %></h3>
+                <!-- Display more details as needed -->
+            </div>
+        <% }); %>
+    </div>
+</body>
+</html>
