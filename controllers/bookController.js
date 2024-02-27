@@ -92,7 +92,7 @@ exports.bookDetails = async (req, res) => {
     try {
         const response = await axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`);
         const book = response.data;
-        res.render('bookDetails', { book }); // Render a new template with the book details
+        res.render('bookDetails', { book, user:req.session.user }); // Render a new template with the book details
     } catch (error) {
         console.error('Error fetching book details:', error);
         res.status(500).send('Error fetching book details');

@@ -2311,6 +2311,22 @@ Version: 1.1
   #footer .footer-item img.footer-logo {
     margin-bottom: 40px;
   }
+
+  img.banner-imager{
+    height: 25vh;
+  }
+  .book-image {
+    width: 100%; /* or a specific width, e.g., 200px */
+    height: 350px; /* Adjust the height as needed */
+    object-fit: cover;
+    display: block; /* To remove bottom space/gap */
+  }
+  .book-cover {
+    width: 100%; /* or a specific width, e.g., 200px */
+    height: 350px; /* Adjust the height as needed */
+    background-size: cover;
+    background-position: center;
+  }
   
   #footer .footer-item p {
     width: 80%;

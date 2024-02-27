@@ -9,7 +9,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-
+        <base href="http://localhost:3000/">
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/vendor.css">
     <link rel="stylesheet" type="text/css" href="css/style1.css">
@@ -38,16 +38,18 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/favorites">Favorites</a>
-                      </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            aria-expanded="false">Dropdown</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
                     </li>
+                    <% if (isLoggedIn) { %>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <%= user.username %>
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                          </ul>
+                        </li>
+                        <% }%>
                 </ul>
             </div>
         </div>
@@ -59,17 +61,21 @@
                     <div class="main-slider pattern-overlay">
                         <div class="slider-item">
                             <div class="banner-content">
-                                <h2 class="banner-title"><%= book.volumeInfo.title %></h2>
+                                <h2 class="banner-title">
+                                    <%= book.volumeInfo.title %>
+                                </h2>
                                 <p>
-                                    <%= book.volumeInfo.description %></p>
-                                <div class="btn-wrap">
-                                    <form action="/add-to-favorites/<%= book.id %>" method="POST">
-                                    <a href="#" class="btn btn-outline-accent btn-accent-arrow"><button type="submit">Add to favorites</button><i
-                                            class="icon icon-ns-arrow-right"></i></a>
-                                        </form>
-                                </div>
+                                    <%= book.volumeInfo.description %>
+                                </p>
+                                <form action="/add-to-favorites/<%= book.id %>" method="POST">
+                                    <div class="btn-wrap">
+                                        <a href="#" class="btn btn-outline-accent btn-accent-arrow"><button
+                                                type="submit">Add to favorites</button><i
+                                                class="icon icon-ns-arrow-right"></i></a>
+                                    </div>
+                                </form>
                             </div>
-                            <img src="<%= book.volumeInfo.imageLinks.thumbnail %>" alt="banner" class="banner-image">
+                            <img src="<%= book.volumeInfo.imageLinks.thumbnail %>" alt="banner" class="banner-imager">
                         </div>
 
                     </div>
@@ -81,8 +87,9 @@
     </section>
 
     </section>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-		crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

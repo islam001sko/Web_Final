@@ -99,8 +99,8 @@
                             <% favorites.forEach(book => { %>
                                 <div class="col-md-3">
                                     <div class="product-item">
-                                        <figure class="product-style">
-                                            <img src="<%= book.image %>" alt="Book" class="product-item">
+                                        <figure class="product-style book-cover">
+                                            <img src="<%= book.image %>" alt="Book" class="product-item book-image">
                                             <form action="/favorites/delete-favorites/<%= book.id %>?_method=DELETE" method="POST"style="display: inline;">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <button type="submit" class="add-to-cart btn-danger">Delete</button>
