@@ -89,10 +89,11 @@ exports.deleteBook = async (req, res) => {
 
 exports.bookDetails = async (req, res) => {
     const bookId = req.params.id;
+    const isLoggedIn = req.session.user ? true : false;
     try {
         const response = await axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`);
         const book = response.data;
-        res.render('bookDetails', { book, user:req.session.user }); // Render a new template with the book details
+        res.render('bookDetails', { book, user:req.session.user,isLoggedIn: isLoggedIn }); // Render a new template with the book details
     } catch (error) {
         console.error('Error fetching book details:', error);
         res.status(500).send('Error fetching book details');

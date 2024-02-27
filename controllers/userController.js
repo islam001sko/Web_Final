@@ -106,7 +106,7 @@ const viewFavorites = async (req, res) => {
             'id': { $in: user.favorites } 
         });
 
-        res.render('favorites', { favorites: books });
+        res.render('favorites', { favorites: books, user: req.session.user });
     } catch (error) {
         console.error('Error fetching favorites:', error);
         res.status(500).send('Error fetching favorites');

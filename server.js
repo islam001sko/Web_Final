@@ -39,12 +39,6 @@ app.use('/', userRoute);
 app.use('/', bookRoute);
 app.use('/admin', adminRoute);
 
-app.use(function (err, req, res, next) {
-    res.render('error', {
-        error: err
-    });
-});
-
 mongoose.connect(process.env.dbURL).then(async () => {
     app.listen(3000, () => {
         console.log("Connected to database and listening on port 3000");
