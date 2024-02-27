@@ -1568,7 +1568,11 @@ Version: 1.1
     background-repeat: no-repeat;
     background-position: top right;
   }
-  
+  .latest-blog img {
+    width: 100%; /* Make the image fill the container */
+    height: 200px; /* Fixed height */
+    object-fit: cover; /* Ensures the image covers the area without losing its aspect ratio */
+}
   /*--- Page Title
   -----------------------------------------------*/
   .page-title {

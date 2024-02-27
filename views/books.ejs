@@ -10,8 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/vendor.css">
     <link rel="stylesheet" type="text/css" href="css/style1.css">
 
 </head>
@@ -38,16 +36,17 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/favorites">Favorites</a>
-                      </li>
-                      <% if (isLoggedIn) { %>
+                    </li>
+                    <% if (isLoggedIn) { %>
                         <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                            <%= user.username %>
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                          </ul>
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <%= user.username %>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            </ul>
                         </li>
                         <% }%>
                 </ul>
@@ -68,10 +67,9 @@
                                     insight, guided by the voices of acclaimed authors and the stories that have
                                     captivated readers around the globe. Our collection is thoughtfully divided by
                                     category.</p>
-                                <div class="btn-wrap">
-                                    <a href="#popular-books" class="btn btn-outline-accent btn-accent-arrow">Read More<i
-                                            class="icon icon-ns-arrow-right"></i></a>
-                                </div>
+                                <a href="#popular-books" class="btn btn-outline-accent btn-accent-arrow">
+                                    <div class="btn-wrap">Read More</div><i class="icon icon-ns-arrow-right"></i>
+                                </a>
                             </div>
                             <img src="images/main-banner1.jpg" alt="banner" class="banner-image">
                         </div>
@@ -90,36 +88,40 @@
                 <div class="col-md-12">
                     <div class="section-header align-center">
                         <div class="title">
-                            <span>Discover Our Collection</span>
+                            <span><strong>These Books added by our admin</strong></span>
                         </div>
                         <h2 class="section-title">Popular Books</h2>
                     </div>
-    
+
                     <!-- Dynamically display books -->
                     <div id="all-genre" class="tab-content active">
                         <div class="row">
-                            <% popularBooks.forEach(book => { %>
+                            <% popularBooks.forEach(book=> { %>
                                 <div class="col-md-3">
                                     <div class="product-item">
                                         <figure class="product-style">
                                             <img src="<%= book.image %>" alt="Book" class="product-item">
                                         </figure>
                                         <figcaption>
-                                            <h3><%= book.title %></h3>
-                                            <span><%= book.author %></span>
+                                            <h3>
+                                                <%= book.title %>
+                                            </h3>
+                                            <span>
+                                                <%= book.author %>
+                                            </span>
                                         </figcaption>
                                     </div>
                                 </div>
-                            <% }); %>
+                                <% }); %>
                         </div>
                     </div>
-    
+
                 </div><!--inner-tabs-->
-    
+
             </div>
         </div>
     </section>
-    
+
 
     <section id="books">
         <div class="container mt-5">
