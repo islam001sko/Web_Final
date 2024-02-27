@@ -6,7 +6,6 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 require('dotenv').config();
 
-var routes = require('./routes');
 const homeRoute = require('./routes/homeRoute')
 const bookRoute = require('./routes/bookRoute')
 const userRoute = require('./routes/userRoute')
@@ -32,7 +31,9 @@ app.use(session({
 
 app.use(methodOverride('_method'));
 
-routes(app);
+app.get('/', function (req, res) {
+    res.redirect('./home');
+});
 app.use('/home', homeRoute);
 app.use('/', userRoute);
 app.use('/', bookRoute);
