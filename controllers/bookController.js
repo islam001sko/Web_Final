@@ -8,6 +8,7 @@ exports.searchBooks = async (req, res) => {
         const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${title}&key=AIzaSyCRBcTduN9KhnY9W_fJunhyhl0O_m9eWZw`);
         const booksData = response.data.items;
         const popularBooks = await PopularBook.find();
+        const isLoggedIn = req.session.user ? true : false;
 
         const books = await Promise.all(booksData.map(async (book) => {
             // Check if the book already exists in the database
@@ -27,18 +28,7 @@ exports.searchBooks = async (req, res) => {
             return foundBook; // Return the found or newly created book
         }));
 
-        res.render('books', { books, user: req.session.user,popularBooks });
-    } catch (error) {
-        console.error('Error fetching books:', error);
-        res.status(500).send('Error fetching books');
-    }
-};
-
-
-exports.getAllBooks = async (req, res) => {
-    try {
-        const books = await Book.find();
-        res.render('admin', { books });
+        res.render('books', { books, user: req.session.user,popularBooks,isLoggedIn:isLoggedIn });
     } catch (error) {
         console.error('Error fetching books:', error);
         res.status(500).send('Error fetching books');
@@ -81,7 +71,7 @@ exports.deleteBook = async (req, res) => {
     try {
         await Book.findByIdAndRemove(req.params.id);
         res.redirect('/admin/books');
-    } catch (error) {
+    } catch (error) {   
         console.error('Error deleting book:', error);
         res.status(500).send('Error deleting book');
     }

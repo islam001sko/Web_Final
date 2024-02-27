@@ -7,7 +7,6 @@ router.use(methodOverride('_method'));
 
 router.get('/search', bookController.searchBooks);
 router.get('/book-details/:id', bookController.bookDetails);
-router.get('/books', bookController.getAllBooks);
 router.get('/books/:id/edit', bookController.getBook);
 router.put('/books/:id', bookController.updateBook);
 router.delete('/books/:id', bookController.deleteBook);

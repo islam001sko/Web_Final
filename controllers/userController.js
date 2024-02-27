@@ -94,7 +94,6 @@ const addFavoriteBook = async (req, res) => {
 
 const viewFavorites = async (req, res) => {
     const userId = req.session.user.id; 
-    console.log("User ID:", userId);
 
     try {
         const user = await User.findById(userId);

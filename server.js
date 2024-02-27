@@ -10,6 +10,8 @@ const homeRoute = require('./routes/homeRoute')
 const bookRoute = require('./routes/bookRoute')
 const userRoute = require('./routes/userRoute')
 const adminRoute = require('./routes/adminRoute')
+const newsRoute = require('./routes/newsRoute')
+const logoutRoute = require("./routes/logoutRoute.js");
 
 const app = express();
 
@@ -38,6 +40,8 @@ app.use('/home', homeRoute);
 app.use('/', userRoute);
 app.use('/', bookRoute);
 app.use('/admin', adminRoute);
+app.use('/news', newsRoute);
+app.use('/', logoutRoute);
 
 mongoose.connect(process.env.dbURL).then(async () => {
     app.listen(3000, () => {

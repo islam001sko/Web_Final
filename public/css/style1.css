@@ -1553,7 +1553,6 @@ Version: 1.1
   /*--- Pattern Overlay
   -----------------------------------------------*/
   .pattern-overlay {
-    background-image: url(images/pattern1.png);
     background-repeat: no-repeat;
     background-position: top right;
   }
