@@ -31,7 +31,10 @@ app.use(session({
         maxAge: 1000*60*60*24
     },
 }));
-
+app.use(function (req, res, next) {
+    res.locals.user = req.session.user;
+    next();
+});
 
 app.use(methodOverride('_method'));
 
