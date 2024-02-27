@@ -39,7 +39,7 @@ exports.searchBooks = async (req, res) => {
 exports.getBook = async (req, res) => {
     try {
         const book = await Book.findById(req.params.id);
-        res.render('editBook', { book });
+        res.render('editBook', { book,user:req.session.user });
     } catch (error) {
         console.error('Error finding book:', error);
         res.status(500).send('Error finding book');
@@ -83,7 +83,7 @@ exports.bookDetails = async (req, res) => {
     try {
         const response = await axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`);
         const book = response.data;
-        res.render('bookDetails', { book, user:req.session.user,isLoggedIn: isLoggedIn }); // Render a new template with the book details
+        res.render('bookDetails', { book, user:req.session.user,isLoggedIn: isLoggedIn }); 
     } catch (error) {
         console.error('Error fetching book details:', error);
         res.status(500).send('Error fetching book details');
