@@ -26,11 +26,8 @@ app.set('views', path.join(__dirname, '/views'));
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
-        secure: process.env.NODE_ENV === 'production', // Ensure this is true in production
-        httpOnly: true,
-        sameSite: 'strict', // Consider using 'none' if your site needs to support cross-site requests
         maxAge: 1000*60*60*24
     },
 }));
