@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const session = require('express-session');
 const methodOverride = require('method-override');
+const MongoStore = require('connect-mongo');
 require('dotenv').config();
 
 const homeRoute = require('./routes/homeRoute')
@@ -27,6 +28,9 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: process.env.dbURL
+    }),
     cookie: {
         httpOnly: true, 
         maxAge: 1000 * 60 * 60 * 48, 
