@@ -29,7 +29,8 @@ app.use(session({
     saveUninitialized: true,
     cookie: {
         maxAge: 123456789,
-        secure: true
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? 'None' : 'Lax'
     },
 }));
 
@@ -45,7 +46,7 @@ app.use('/', bookRoute);
 app.use('/admin', adminRoute);
 app.use('/news', newsRoute);
 app.use('/', logoutRoute);
-app.use('/',profileRoute)
+app.use('/', profileRoute)
 
 mongoose.connect(process.env.dbURL).then(async () => {
     app.listen(3000, () => {
