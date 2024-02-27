@@ -46,7 +46,7 @@ app.use('/', bookRoute);
 app.use('/admin', adminRoute);
 app.use('/news', newsRoute);
 app.use('/', logoutRoute);
-app.use('/', profileRoute)
+app.use('/logout', profileRoute)
 
 mongoose.connect(process.env.dbURL).then(async () => {
     app.listen(3000, () => {
