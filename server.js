@@ -33,7 +33,6 @@ app.use(session({
     }),
     cookie: {
         maxAge: 1000 * 60 * 60 * 48, 
-        sameSite: 'none'
     },
 }));
 app.use(function (req, res, next) {
