@@ -80,7 +80,7 @@ const addFavoriteBook = async (req, res) => {
         if (!user.favorites.includes(bookId)) {
             user.favorites.push(bookId);
             await user.save();
-            
+
             res.redirect('/favorites'); // Redirect to a page showing the user's favorites
         } else {
             res.status(400).send('Book already in favorites');
@@ -93,18 +93,17 @@ const addFavoriteBook = async (req, res) => {
 };
 
 const viewFavorites = async (req, res) => {
-    const userId = req.session.user.id; // Make sure this matches how you store user IDs in the session
+    const userId = req.session.user.id; 
     console.log("User ID:", userId);
-    
+
     try {
         const user = await User.findById(userId);
         if (!user) {
             return res.status(404).send('User not found');
         }
 
-        // Fetch each favorite book's details from your books collection
         const books = await Book.find({
-            'id': { $in: user.favorites } // Use the 'id' field that holds the Google Books API ID
+            'id': { $in: user.favorites } 
         });
 
         res.render('favorites', { favorites: books });
@@ -114,11 +113,31 @@ const viewFavorites = async (req, res) => {
     }
 };
 
+const deleteFavorites = async (req, res) => {
+    const userId = req.session.user.id;
+    const bookId = req.params.id;
+    try {
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { $pull: { favorites: bookId } }, 
+            { new: true } 
+        );
+
+        if (!updatedUser) {
+            return res.status(404).send("User not found.");
+        }
+        res.redirect('/favorites');
+    } catch (error) {
+        console.error("Error removing book from favorites:", error);
+        res.status(500).send("An error occurred.");
+    }
+}
 
 module.exports = {
     signup,
     login,
     getLogin,
     addFavoriteBook,
-    viewFavorites
+    viewFavorites,
+    deleteFavorites
 };

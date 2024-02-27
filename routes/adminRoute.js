@@ -1,22 +1,17 @@
 const express = require('express');
 const User = require('../models/userModel');
-const { addUser, deleteUser, editUser, updateUser } = require('../controllers/adminController');
+const PopularBook = require('../models/popularBook')
+const { addUser, deleteUser, editUser, updateUser, deleteBook,updateBook,addBook,editBook} = require('../controllers/adminController');
 const router = express.Router();
+const isAdmin = require('../middleware/isAdmin');
 const methodOverride = require('method-override');
 
 router.use(methodOverride('_method'));
 
-function isAdmin(req, res, next) {
-    if (req.session.user && req.session.user.admin) {
-        next();
-    } else {
-        res.redirect('/login'); // Or handle the response appropriately
-    }
-}
-
 router.get('/', isAdmin, async (req, res) => {
     const users = await User.find();
-    res.render('admin', { users });
+    const books = await PopularBook.find();
+    res.render('admin', { users,books });
 });
 
 router.get('/edit-user/:userId', isAdmin, editUser);
@@ -28,5 +23,10 @@ router.post('/add-user', isAdmin, addUser);
 
 // Use DELETE for removing users
 router.delete('/delete-user/:userId', isAdmin, deleteUser);
+
+router.post('/add-book', isAdmin, addBook);
+router.get('/edit-book/:id', isAdmin, editBook);
+router.put('/update-book/:id', isAdmin, updateBook); // Consider using PUT and method-override middleware
+router.delete('/delete-book/:id', isAdmin, deleteBook);
 
 module.exports = router;

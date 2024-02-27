@@ -1,23 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+    <title>BookSaw - Free Book Store HTML CSS Template</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= book.volumeInfo.title %></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="css/style1.css">
+
 </head>
-<body>
-    <div class="container mt-4">
-        <h2><%= book.volumeInfo.title %></h2>
-        <p><strong>Authors:</strong> <%= book.volumeInfo.authors.join(', ') %></p>
-        <p><strong>Description:</strong> <%= book.volumeInfo.description %></p>
-        <% if (book.volumeInfo.imageLinks) { %>
-            <img src="<%= book.volumeInfo.imageLinks.thumbnail %>" alt="<%= book.volumeInfo.title %> cover">
-        <% } %>
-        <!-- Add more details as needed -->
-        <form action="/add-to-favorites/<%= book.id %>" method="POST">
-            <button type="submit" class="btn btn-success">Add to Favorites</button>
-        </form>
-    </div>
+
+<body data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Tenth navbar example">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08"
+                aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/home">Welcome</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/search">Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Articles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/favorites">Favorites</a>
+                      </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            aria-expanded="false">Dropdown</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section id="billboard">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-slider pattern-overlay">
+                        <div class="slider-item">
+                            <div class="banner-content">
+                                <h2 class="banner-title"><%= book.volumeInfo.title %></h2>
+                                <p>
+                                    <%= book.volumeInfo.description %></p>
+                                <div class="btn-wrap">
+                                    <form action="/add-to-favorites/<%= book.id %>" method="POST">
+                                    <a href="#" class="btn btn-outline-accent btn-accent-arrow"><button type="submit">Add to favorites</button><i
+                                            class="icon icon-ns-arrow-right"></i></a>
+                                        </form>
+                                </div>
+                            </div>
+                            <img src="<%= book.volumeInfo.imageLinks.thumbnail %>" alt="banner" class="banner-image">
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    </section>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
 </body>
 </html>
