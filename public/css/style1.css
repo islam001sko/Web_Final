@@ -1,0 +1,111 @@
+:root {
+    --accent-color: #C5A992;
+    --secondary-color: #C5A992;
+    --dark-color: #2f2f2f;
+    --light-color: #F3F2EC;
+    --body-text-color: #757575;
+    --light-text-color: #afafaf;
+    --dark-text-color: #2f2f2f;
+}
+
+/* Fonts */
+:root {
+    --body-font: "Raleway", sans-serif;
+    --heading-font: "Prata", Georgia, serif;
+    --secondary-font: "Playfair Display", Georgia, serif;
+}
+
+.products-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.product-style {
+    position: relative;
+    overflow: hidden;
+}
+
+.slick-slider .product-style {
+    margin: 0 15px 25px;
+}
+
+.product-style figcaption p {
+    margin-bottom: 20px;
+}
+
+.product-style img.product-item {
+    position: relative;
+    background: #EFEEE8;
+    border: 1px solid #EAE8DF;
+    padding: 15%;
+    cursor: pointer;
+    width: 100%;
+}
+
+.product-style button.add-to-cart {
+    position: absolute;
+    background: #000;
+    color: #fff;
+    width: 100%;
+    margin: 0;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 3;
+    bottom: 300px;
+    bottom: -65px;
+    left: 0;
+    z-index: 9;
+    transition: 0.3s ease-out;
+}
+
+.product-style:hover button.add-to-cart {
+    bottom: 380px;
+    bottom: 0;
+}
+
+.product-item figcaption {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.product-item figcaption>h3 {
+    font-size: 1.4em;
+    font-weight: 500;
+    color: #74642F;
+    margin: 0;
+}
+
+.product-item figcaption>p {
+    margin: 0;
+}
+
+.product-item .item-price {
+    color: #74642F;
+    font-size: 1.3em;
+}
+
+@media screen and (max-width: 768px) {
+    .products-grid .product-item {
+        width: 45%;
+    }
+
+    .product-style img.product-item {
+        /*height: 550px;*/
+        object-fit: contain;
+        margin: 0 auto;
+    }
+
+    .products-grid.col-3 .product-style,
+    .products-grid.col-4 .product-style,
+    .products-grid.col-5 .product-style {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .products-grid .product-style {
+        width: 100%;
+    }
+}

@@ -65,9 +65,16 @@
 
 section {
     padding: 100px 200px;
-    height: 100vh;
 }
-
+.card-img-top {
+  height: 200px; /* Adjust based on your design */
+  width: 100%; /* Makes image responsive */
+  object-fit: contain; /* Cover ensures the image covers the area without stretching. */
+}
+.card-body {
+  height: auto; /* Ensures uniform card body height */
+  overflow: auto; /* Adds scrollbar to card body if text overflows */
+}
 .home {
     position: relative;
     width: 100%;

@@ -22,7 +22,7 @@ const userSchema = new Schema({
     updatedAt: { type: Date },
     deletedAt: { type: Date, default: null },
     favorites: [{
-        type: mongoose.Schema.Types.ObjectId, // or String if storing Google Books API book IDs
+        type: String, // or String if storing Google Books API book IDs
         ref: 'Book' // Only needed if you're referencing documents stored in your own database
     }]
 }, { timestamps: true })

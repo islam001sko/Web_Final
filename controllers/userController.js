@@ -1,4 +1,5 @@
 const User = require("../models/userModel.js");
+const Book = require("../models/bookModel.js")
 const bcrypt = require('bcryptjs');
 
 const signup = async (req, res, next) => {
@@ -72,9 +73,7 @@ const getLogin = async (req, res, next) => {
 
 const addFavoriteBook = async (req, res) => {
     const userId = req.session.user.id; // Assuming the user ID is stored in the session
-    console.log("User ID:", userId);
-    const bookId = req.body.bookId; // The ID of the book to add to favorites
-
+    const bookId = req.params.id; // The ID of the book to add to favorites
     try {
         // Add the book to the user's favorites
         const user = await User.findById(userId);
@@ -82,7 +81,7 @@ const addFavoriteBook = async (req, res) => {
             user.favorites.push(bookId);
             await user.save();
             
-            res.redirect('/favorites-page'); // Redirect to a page showing the user's favorites
+            res.redirect('/favorites'); // Redirect to a page showing the user's favorites
         } else {
             res.status(400).send('Book already in favorites');
         }
@@ -94,16 +93,27 @@ const addFavoriteBook = async (req, res) => {
 };
 
 const viewFavorites = async (req, res) => {
-    const userId = req.session.user._id;
+    const userId = req.session.user.id; // Make sure this matches how you store user IDs in the session
+    console.log("User ID:", userId);
+    
     try {
-        const user = await User.findById(userId).populate('favorites'); // Populate if using references
-        // If storing Google Books API IDs, you might need to fetch book details from the API here
-        res.render('favorites', { favorites: user.favorites });
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        // Fetch each favorite book's details from your books collection
+        const books = await Book.find({
+            'id': { $in: user.favorites } // Use the 'id' field that holds the Google Books API ID
+        });
+
+        res.render('favorites', { favorites: books });
     } catch (error) {
         console.error('Error fetching favorites:', error);
         res.status(500).send('Error fetching favorites');
     }
 };
+
 
 module.exports = {
     signup,
