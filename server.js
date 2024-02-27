@@ -28,16 +28,11 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        maxAge: 123456789
+        maxAge: 123456789,
+        secure: true
     },
 }));
 
-app.use((req, res, next) => {
-    if (!req.session.language) {
-      req.session.language = 'en'; // Default language
-    }
-    next();
-  });
 
 app.use(methodOverride('_method'));
 
