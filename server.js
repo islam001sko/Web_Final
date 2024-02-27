@@ -27,7 +27,6 @@ app.use(session({
     secret: 'f7zNqEMNrtwFH',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: "mongodb+srv://zhaslanuly01:87759084080IslamIsko@cluster0.itowmxi.mongodb.net/" }),
     cookie: {
         maxAge: 123456789,
         secure: process.env.NODE_ENV === "production",
