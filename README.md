@@ -31,7 +31,7 @@ Users can add books to their personal favorites list, making it easy to save and
 
 ## News
 
-News section covers a wide range of topics, providing users with a comprehensive overview of current events.
+News section covers a wide range of topics, providing users with a comprehensive overview of current events. Also user can share with his shared news to other users. In profile page person can see other user's shared news.
 
 ## Libraries 
 

@@ -12,6 +12,7 @@ const userRoute = require('./routes/userRoute')
 const adminRoute = require('./routes/adminRoute')
 const newsRoute = require('./routes/newsRoute')
 const logoutRoute = require("./routes/logoutRoute.js");
+const profileRoute = require('./routes/profileRoute.js')
 
 const app = express();
 
@@ -31,6 +32,13 @@ app.use(session({
     },
 }));
 
+app.use((req, res, next) => {
+    if (!req.session.language) {
+      req.session.language = 'en'; // Default language
+    }
+    next();
+  });
+
 app.use(methodOverride('_method'));
 
 app.get('/', function (req, res) {
@@ -42,6 +50,7 @@ app.use('/', bookRoute);
 app.use('/admin', adminRoute);
 app.use('/news', newsRoute);
 app.use('/', logoutRoute);
+app.use('/',profileRoute)
 
 mongoose.connect(process.env.dbURL).then(async () => {
     app.listen(3000, () => {

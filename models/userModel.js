@@ -24,6 +24,11 @@ const userSchema = new Schema({
     favorites: [{
         type: String, // or String if storing Google Books API book IDs
         ref: 'Book' // Only needed if you're referencing documents stored in your own database
+    }],
+    sharedNews: [{
+        title: String,
+        imageUrl: String,
+        url: String
     }]
 }, { timestamps: true })
 
