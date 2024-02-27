@@ -26,11 +26,12 @@ app.set('views', path.join(__dirname, '/views'));
 app.use(session({
     secret: 'f7zNqEMNrtwFH',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
-        maxAge: 123456789,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? 'None' : 'Lax',
+        secure: process.env.NODE_ENV === 'production', // Ensure this is true in production
+        httpOnly: true,
+        sameSite: 'strict', // Consider using 'none' if your site needs to support cross-site requests
+        maxAge: 1000*60*60*24
     },
 }));
 
