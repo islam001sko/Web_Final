@@ -1,0 +1,15 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: 'default-receiver'
+
+receivers:
+  - name: 'default-receiver'
+    email_configs:
+    - to: 'zhaslanuly01@gmail.com'
+      from: 'alertmanager@example.com'
+      smarthost: 'smtp.example.com:587'
+      auth_username: 'alertmanager'
+      auth_identity: 'alertmanager'
+      auth_password: 'yourpassword'
